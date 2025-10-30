@@ -13,6 +13,8 @@ struct Koi_AkademiApp: App {
 
     var body: some Scene {
         WindowGroup {
+            
+            
             SplashView()
                 .preferredColorScheme(.dark)
         }
