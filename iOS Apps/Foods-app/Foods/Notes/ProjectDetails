@@ -1,0 +1,40 @@
+API's
+• Tüm yemekleri getir
+http://kasimadalan.pe.hu/yemekler/tumYemekleriGetir.php
+
+
+• Sepetteki yemekleri getir
+http://kasimadalan.pe.hu/yemekler/sepettekiYemekleriGetir.php
+
+• Sepete yemek ekleme
+http://kasimadalan.pe.hu/yemekler/sepeteYemekEkle.php
+
+• Sepetten yemek silme
+http://kasimadalan.pe.hu/yemekler/sepettenYemekSil.php
+
+• Yemek resimlerini alma
+http://kasimadalan.pe.hu/yemekler/resimler/ayran.png
+
+
+Tüm Yemekler Veritabanı Tablo Modeli
+yemek_id            int
+yemek_adi           String
+yemek_resim_adi     String
+yemek_fiyat         int
+
+
+Sepetteki Yemekler Veritabanı Tablo Modeli
+sepet_yemek_id      int
+yemek_adi           String
+yemek_resim_adi     String
+yemek_fiyat         int
+yemek_siparis_adet  int
+kullanici_adi       String
+
+
+
+Raw Response datayı ham şekilde hızlıca getirir
+let rawResponse = try JSONSerialization.jsonObject(with: data)
+print(rawResponse)
+
+

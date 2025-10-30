@@ -1,0 +1,192 @@
+Yeni kart oluştur kısmında
+- Fotoğraf ekle
+- Kartın arkası kısmını ekle (sadece yazı, sadece şirket logosu, sadece desen, komplike tasarım, promote metin vs)
+- renkleri ve şablonları düzenle
+- Anasayfa: Kartvizitlerim, Network'üm. Ayarlar sayfasında nasıl paylaşacağını vs göster. KArtvizitlerimde paylaş seçeneği, networkümde tag işlemi, kart olarak göster/liste olarak göster seçenekleri vs
+- Nasıl paylaşılacağı hakkında arge yap. (JSON file, firebase sorgu(veri gizliliği önemli), resim olarak BLE ile gönder, nfc ile gönder, uwb ile paylaş vs vs)
+
+
+
+
+
+--->kişinin kendi oluşturduğu kartvizitleri coredata gibi telefonun yerel deposunda tutabilir miyim? fotoğrafları da depolayabiliyor muyum? Başkasından aldığım kartvizitleri nasıl tutabilirim telefonda? bir database'e bağlamak istemiyorum kişisel verilerin korunumu için çok uğraşmam gerekecek çünkü. json ve direkt fotoğraf olarak alabilir miyim? burda bana bir yol göster
+
+
+Kesinlikle! iOS'ta yerel veri depolama için birkaç yol var. Kartvizit verilerini ve fotoğrafları tamamen cihazda tutabilirsin. İşte en iyi yöntemler:
+
+## 📱 **Yerel Depolama Seçenekleri:**
+
+### **1. UserDefaults + FileManager (Basit Çözüm)**
+```swift
+// Kart verilerini JSON olarak sakla
+class CardStorageManager {
+    private let userDefaults = UserDefaults.standard
+    private let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    
+    // Kartları kaydet
+    func saveCards(_ cards: [BusinessCard]) {
+        if let data = try? JSONEncoder().encode(cards) {
+            userDefaults.set(data, forKey: "saved_cards")
+        }
+    }
+    
+    // Kartları yükle
+    func loadCards() -> [BusinessCard] {
+        guard let data = userDefaults.data(forKey: "saved_cards"),
+              let cards = try? JSONDecoder().decode([BusinessCard].self, from: data) else {
+            return []
+        }
+        return cards
+    }
+    
+    // Fotoğraf kaydet
+    func savePhoto(_ imageData: Data, cardId: UUID) -> String? {
+        let fileName = "\(cardId.uuidString).jpg"
+        let fileURL = documentsPath.appendingPathComponent(fileName)
+        
+        try? imageData.write(to: fileURL)
+        return fileName
+    }
+    
+    // Fotoğraf yükle
+    func loadPhoto(_ fileName: String) -> Data? {
+        let fileURL = documentsPath.appendingPathComponent(fileName)
+        return try? Data(contentsOf: fileURL)
+    }
+}
+```
+
+### **2. Core Data (Önerilen Çözüm)**
+Core Data daha güvenli ve performanslı. Şöyle kullanabilirsin:
+
+```swift
+// Core Data Entity
+@Entity BusinessCardEntity {
+    @Attribute var id: UUID
+    @Attribute var name: String
+    @Attribute var title: String
+    @Attribute var company: String
+    @Attribute var phone: String
+    @Attribute var email: String
+    @Attribute var website: String
+    @Attribute var templateId: String
+    @Attribute var backgroundColor: String
+    @Attribute var textColor: String
+    @Attribute var accentColor: String
+    @Attribute var profileImageFileName: String?
+    @Attribute var isMyCard: Bool // Kendi kartım mı, başkasından aldığım mı
+    @Attribute var createdAt: Date
+    @Attribute var receivedFrom: String? // Kimden aldım
+}
+
+class CoreDataManager {
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "CardModel")
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError("Core Data error: \(error)")
+            }
+        }
+        return container
+    }()
+    
+    var context: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
+    
+    func saveContext() {
+        if context.hasChanges {
+            try? context.save()
+        }
+    }
+}
+```
+
+### **3. JSON + FileManager (Hybrid Çözüm)**
+En basit ve etkili yöntem bu olabilir:## 🗂️ **Depolama Yapısı:**
+
+### **Dosya Organizasyonu**
+```
+Documents/
+├── Cards/
+│   ├── my_cards.json           # Kendi kartlarım
+│   └── received_cards.json     # Aldığım kartlar
+└── Photos/
+    ├── {card-uuid-1}.jpg       # Kart fotoğrafları
+    ├── {card-uuid-2}.jpg
+    └── ...
+```
+
+### **JSON Formatı Örneği**
+```json
+{
+  "name": "Ahmet Yılmaz",
+  "title": "Yazılım Geliştirici",
+  "company": "TechCorp",
+  "phone": "+90 555 123 45 67",
+  "email": "ahmet@techcorp.com",
+  "website": "techcorp.com",
+  "templateId": "modern",
+  "backgroundColor": "#FFFFFF",
+  "textColor": "#000000",
+  "accentColor": "#007AFF",
+  "hasPhoto": true,
+  "sharedAt": "2025-09-27T10:30:00Z"
+}
+```
+
+## 📤 **Paylaşım Yöntemleri:**
+
+### **1. QR Kod ile Paylaşım**
+```swift
+func generateQRCode(for card: BusinessCard) -> UIImage? {
+    guard let jsonString = shareCard(card),
+          let data = jsonString.data(using: .utf8) else { return nil }
+    
+    let filter = CIFilter(name: "CIQRCodeGenerator")
+    filter?.setValue(data, forKey: "inputMessage")
+    
+    if let outputImage = filter?.outputImage {
+        let transform = CGAffineTransform(scaleX: 10, y: 10)
+        let scaledImage = outputImage.transformed(by: transform)
+        
+        let context = CIContext()
+        if let cgImage = context.createCGImage(scaledImage, from: scaledImage.extent) {
+            return UIImage(cgImage: cgImage)
+        }
+    }
+    
+    return nil
+}
+```
+
+### **2. AirDrop/Mesaj ile JSON Paylaşımı**
+```swift
+func shareViaAirDrop(_ card: BusinessCard) {
+    guard let jsonString = shareCard(card) else { return }
+    
+    let activityViewController = UIActivityViewController(
+        activityItems: [jsonString],
+        applicationActivities: nil
+    )
+    
+    // Present activity controller
+}
+```
+
+## 🔒 **Güvenlik ve Gizlilik Avantajları:**
+
+1. **Tamamen Offline**: Tüm veriler cihazda kalır
+2. **Şifreleme**: iOS otomatik olarak Documents dizinini şifreler
+3. **Yedekleme**: iCloud backup'a dahil (opsiyonel)
+4. **Erişim Kontrolü**: Sadece uygulamanın erişimi var
+5. **GDPR Uyumlu**: Kişisel veri kontrolü kullanıcıda
+
+## 💡 **Kullanım Önerileri:**
+
+- **Kendi kartların**: JSON + fotoğraf dosyası olarak sakla
+- **Aldığın kartlar**: Ayrı JSON dosyasında + meta bilgiler
+- **Paylaşım**: Sadece JSON (fotoğraf ayrı gönderilir)
+- **Yedekleme**: iCloud Documents sync'i aktif et
+
+Bu sistem tamamen offline çalışır ve kişisel verilerin güvenliğini sağlar! 🛡️

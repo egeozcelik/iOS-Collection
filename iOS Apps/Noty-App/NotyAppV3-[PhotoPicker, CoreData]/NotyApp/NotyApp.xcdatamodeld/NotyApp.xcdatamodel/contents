@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23B81" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="NotyModel" representedClassName="NotyModel" syncable="YES" codeGenerationType="class">
+        <attribute name="ders" optional="YES" attributeType="String"/>
+        <attribute name="fiyat" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="indirme" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="konu" optional="YES" attributeType="String"/>
+        <attribute name="resim" optional="YES" attributeType="String"/>
+        <attribute name="sayfaAdet" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="yazar" optional="YES" attributeType="String"/>
+    </entity>
+</model>

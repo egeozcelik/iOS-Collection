@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "F361E5AB-8BDA-4325-9AFE-25F23556BB0F"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5F676EC7-00F9-44D1-8D4B-B1E2ACEB1EC5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KisilerUygulamasi/ui/views/KisiDetay.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "KisiDetay"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "5F676EC7-00F9-44D1-8D4B-B1E2ACEB1EC5 - f70bfcd7ca578f9b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KisilerUygulamasi.KisiDetay.viewModel.getter : KisilerUygulamasi.KisiDetayViewModel"
+                  moduleName = "KisilerUygulamasi"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/egeozcelik/Documents/Development/XCode/KisilerUygulamasi/KisilerUygulamasi/ui/views/KisiDetay.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "5F676EC7-00F9-44D1-8D4B-B1E2ACEB1EC5 - a4a21cfe4e919fef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KisilerUygulamasi.KisiDetay.viewModel.setter : KisilerUygulamasi.KisiDetayViewModel"
+                  moduleName = "KisilerUygulamasi"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/egeozcelik/Documents/Development/XCode/KisilerUygulamasi/KisilerUygulamasi/ui/views/KisiDetay.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "5F676EC7-00F9-44D1-8D4B-B1E2ACEB1EC5 - 932c4b0814f21b9e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KisilerUygulamasi.KisiDetay.viewModel.modify : KisilerUygulamasi.KisiDetayViewModel"
+                  moduleName = "KisilerUygulamasi"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/egeozcelik/Documents/Development/XCode/KisilerUygulamasi/KisilerUygulamasi/ui/views/KisiDetay.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "5F676EC7-00F9-44D1-8D4B-B1E2ACEB1EC5 - c01feef2f0c698fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KisilerUygulamasi.KisiDetay.viewModel.modify : KisilerUygulamasi.KisiDetayViewModel with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "KisilerUygulamasi"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/egeozcelik/Documents/Development/XCode/KisilerUygulamasi/KisilerUygulamasi/ui/views/KisiDetay.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "5F676EC7-00F9-44D1-8D4B-B1E2ACEB1EC5 - 9f09c67fa620904d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KisilerUygulamasi.KisiDetay.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; KisilerUygulamasi.KisiDetay"
+                  moduleName = "KisilerUygulamasi"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/egeozcelik/Documents/Development/XCode/KisilerUygulamasi/KisilerUygulamasi/ui/views/KisiDetay.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "5F676EC7-00F9-44D1-8D4B-B1E2ACEB1EC5 - 65a48d34dd55f1e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KisilerUygulamasi.KisiDetay.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;KisilerUygulamasi.KisiDetay&gt;"
+                  moduleName = "KisilerUygulamasi"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/egeozcelik/Documents/Development/XCode/KisilerUygulamasi/KisilerUygulamasi/ui/views/KisiDetay.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "192">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
